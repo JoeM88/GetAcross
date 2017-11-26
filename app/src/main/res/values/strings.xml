@@ -1,6 +1,7 @@
 <resources>
     <string name="app_name">GetAcross</string>
     <string name="title_home">Home</string>
-    <string name="title_dashboard">Voice Translate</string>
-    <string name="title_notifications">Text Translate</string>
+    <string name="voice_translate_title">Voice Translate</string>
+    <string name="text_translate_title">Text Translate</string>
+
 </resources>

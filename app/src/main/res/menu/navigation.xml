@@ -7,13 +7,13 @@
         android:title="@string/title_home" />
 
     <item
-        android:id="@+id/navigation_dashboard"
+        android:id="@+id/navigation__voice_translate"
         android:icon="@drawable/ic_record_voice_over_black_24dp"
-        android:title="@string/title_dashboard" />
+        android:title="@string/voice_translate_title"/>
 
     <item
-        android:id="@+id/navigation_notifications"
+        android:id="@+id/navigation_text_translate"
         android:icon="@drawable/ic_g_translate_black_24dp"
-        android:title="@string/title_notifications" />
+        android:title="@string/text_translate_title" />
 
 </menu>
