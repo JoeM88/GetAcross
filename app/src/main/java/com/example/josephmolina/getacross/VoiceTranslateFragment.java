@@ -47,7 +47,7 @@ public class VoiceTranslateFragment extends Fragment {
         startSpeechRecording();
     }
 
-    public void startSpeechRecording() {
+    private void startSpeechRecording() {
         Intent speechRecognizerIntent = createSpeechRecognizerIntent();
         startActivityForResult(speechRecognizerIntent, VOICE_TRANSLATE_REQUESTCODE);
     }
@@ -67,7 +67,7 @@ public class VoiceTranslateFragment extends Fragment {
         }
     }
 
-    public void displayTranslatedSpeechToText(int requestCode, Intent data) {
+    private void displayTranslatedSpeechToText(int requestCode, Intent data) {
         switch (requestCode) {
             case VOICE_TRANSLATE_REQUESTCODE: {
                 ArrayList<String> result = data.getStringArrayListExtra(RecognizerIntent.EXTRA_RESULTS);
