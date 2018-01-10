@@ -11,7 +11,8 @@ import android.view.ViewGroup;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class TranslateTextFragment extends Fragment {
+public class
+TranslateTextFragment extends Fragment {
 
 
     public TranslateTextFragment() {

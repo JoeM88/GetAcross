@@ -1,6 +1,6 @@
 <resources>
     <string name="app_name">GetAcross</string>
-    <string name="title_home">Home</string>
+    <string name="photo_translate_title">Photo Translate</string>
     <string name="voice_translate_title">Voice Translate</string>
     <string name="text_translate_title">Text Translate</string>
     <string name="voice_recorder_prompt">What would you like me to translate?</string>

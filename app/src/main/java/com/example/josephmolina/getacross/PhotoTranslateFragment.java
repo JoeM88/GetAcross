@@ -8,14 +8,11 @@ import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
-import android.widget.TextView;
-
-import org.w3c.dom.Text;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class MainActivity extends AppCompatActivity {
+public class PhotoTranslateFragment extends AppCompatActivity {
     @BindView(R.id.navigation)
     BottomNavigationView navigation;
 
@@ -25,7 +22,7 @@ public class MainActivity extends AppCompatActivity {
         @Override
         public boolean onNavigationItemSelected(@NonNull MenuItem item) {
             switch (item.getItemId()) {
-                case R.id.navigation_home:
+                case R.id.navigation_photo_translate:
                     return true;
                 case R.id.navigation__voice_translate:
                     displayFragment(new VoiceTranslateFragment());
