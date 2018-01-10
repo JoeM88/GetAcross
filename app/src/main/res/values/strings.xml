@@ -4,5 +4,9 @@
     <string name="voice_translate_title">Voice Translate</string>
     <string name="text_translate_title">Text Translate</string>
     <string name="voice_recorder_prompt">What would you like me to translate?</string>
+    <string name="empty_translate_text_input">Please enter text to translate</string>
+    <string name="textToSpeech_not_initialized_error">TextToSpeech not initialized</string>
+    <string name="textToSpeech_initialization_failed_error">Initialization Failed</string>
+    <string name="unsupported_language_error">This language is not supported</string>
 
 </resources>
