@@ -28,7 +28,7 @@ public class PhotoTranslateFragment extends AppCompatActivity {
                     displayFragment(new VoiceTranslateFragment());
                     return true;
                 case R.id.navigation_text_translate:
-                    displayFragment(new TranslateTextFragment());
+                    displayFragment(new TextTranslateFragment());
                     return true;
             }
             return false;

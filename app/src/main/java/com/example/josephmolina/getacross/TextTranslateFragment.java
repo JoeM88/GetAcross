@@ -11,11 +11,10 @@ import android.view.ViewGroup;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class
-TranslateTextFragment extends Fragment {
+public class TextTranslateFragment extends Fragment {
 
 
-    public TranslateTextFragment() {
+    public TextTranslateFragment() {
         // Required empty public constructor
     }
 
