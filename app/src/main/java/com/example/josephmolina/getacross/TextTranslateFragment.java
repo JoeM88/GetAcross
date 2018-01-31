@@ -38,6 +38,11 @@ public class TextTranslateFragment extends Fragment {
         return view;
     }
 
+    public void initializeTextToSpeechManager(View view) {
+        textToSpeechManager = new TextToSpeechManager();
+        textToSpeechManager.initialize(view.getContext());
+    }
+
     @OnClick(R.id.speakButton)
     public void onSpeak() {
         if (!textToTranslate.getText().toString().isEmpty()) {
@@ -47,8 +52,9 @@ public class TextTranslateFragment extends Fragment {
         }
     }
 
-    public void initializeTextToSpeechManager(View view) {
-        textToSpeechManager = new TextToSpeechManager();
-        textToSpeechManager.initialize(view.getContext());
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        textToSpeechManager.shutDown();
     }
 }
