@@ -1,4 +1,4 @@
-package com.example.josephmolina.getacross;
+package com.example.josephmolina.getacross.Fragments;
 
 
 import android.app.Fragment;
@@ -8,6 +8,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.Toast;
+
+import com.example.josephmolina.getacross.R;
+import com.example.josephmolina.getacross.TextToSpeechManager;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;

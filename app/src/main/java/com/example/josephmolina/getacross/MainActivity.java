@@ -9,10 +9,13 @@ import android.support.design.widget.BottomNavigationView;
 import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
 
+import com.example.josephmolina.getacross.Fragments.TextTranslateFragment;
+import com.example.josephmolina.getacross.Fragments.VoiceTranslateFragment;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class PhotoTranslateFragment extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity {
     @BindView(R.id.navigation)
     BottomNavigationView navigation;
 
