@@ -46,7 +46,7 @@ public class TextTranslateFragment extends Fragment {
         textToSpeechManager.initialize(view.getContext());
     }
 
-    @OnClick(R.id.speakButton)
+    @OnClick(R.id.translateButton)
     public void onSpeak() {
         if (!textToTranslate.getText().toString().isEmpty()) {
             textToSpeechManager.initQueue(textToTranslate.getText().toString());
