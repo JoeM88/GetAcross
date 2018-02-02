@@ -9,4 +9,9 @@
     <string name="textToSpeech_initialization_failed_error">Initialization Failed</string>
     <string name="unsupported_language_error">This language is not supported</string>
 
+    <string-array name="language_array">
+        <item>English</item>
+        <item>Spanish</item>
+    </string-array>
+
 </resources>

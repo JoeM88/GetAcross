@@ -6,7 +6,6 @@
     android:layout_height="match_parent"
     tools:layout_editor_absoluteY="81dp">
 
-    <!-- TODO: Update blank fragment layout -->
     <TextView
         android:id="@+id/textView"
         android:layout_width="wrap_content"
@@ -14,23 +13,10 @@
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:text="Text to translate:"
-        android:textStyle="bold"
         android:textColor="@color/black"
+        android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
-
-    <Button
-        android:id="@+id/translateButton"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="8dp"
-        android:text="Translate"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
 
     <TableLayout
         android:id="@+id/tableLayout"
@@ -40,7 +26,7 @@
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
         android:stretchColumns="0"
-        app:layout_constraintBottom_toTopOf="@+id/translateButton"
+        app:layout_constraintBottom_toTopOf="@+id/linearLayout"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView">
@@ -51,7 +37,7 @@
             android:layout_weight="1">
 
             <EditText
-                android:id="@+id/textToTranslate"
+                android:id="@+id/textToTranslateEditText"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:hint="Enter text to translate" />
@@ -63,14 +49,48 @@
             android:layout_height="match_parent"
             android:layout_weight="1">
 
-            <EditText
-                android:id="@+id/translatedText"
+            <TextView
+                android:id="@+id/translatedTextResults"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:hint="Translated text" />
-
         </TableRow>
-
     </TableLayout>
+
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:id="@+id/linearLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:gravity="center|top"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <Spinner
+            android:id="@+id/initialLanguageSelection"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:entries="@array/language_array" />
+
+        <ImageButton
+            android:id="@+id/mic_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@mipmap/ic_launcher_round" />
+
+
+        <Spinner
+            android:id="@+id/translateToLanguageSelection"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+    </LinearLayout>
 
 </android.support.constraint.ConstraintLayout>
