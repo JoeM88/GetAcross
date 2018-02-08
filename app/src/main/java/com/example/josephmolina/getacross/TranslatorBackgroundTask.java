@@ -14,11 +14,7 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
-import java.net.URLConnection;
 
-/**
- * Created by DoguD on 01/07/2017.
- */
 
 public class TranslatorBackgroundTask extends AsyncTask<String, Void, String> {
     public TranslatorBackgroundTask(Context cntxt) {
@@ -89,22 +85,4 @@ public class TranslatorBackgroundTask extends AsyncTask<String, Void, String> {
         super.onProgressUpdate(values);
     }
 
-    private static String request(String URL) throws IOException {
-        URL url = new URL(URL);
-        URLConnection urlConn = url.openConnection();
-        urlConn.addRequestProperty("User-Agent", "Mozilla");
-
-        InputStream inStream = urlConn.getInputStream();
-
-        String recieved = new BufferedReader(new InputStreamReader(inStream)).readLine();
-
-        inStream.close();
-        return recieved;
-    }
-
-    public static String detectLanguage(String text) throws IOException {
-        String response = request("https://translate.yandex.net/api/v1.5/tr.json/detect?key=" + BuildConfig.YANDEX_API_TOKEN + "&text=" + text);
-        return response.substring(response.indexOf("lang") + 7, response.length() - 2);
-
-    }
 }
