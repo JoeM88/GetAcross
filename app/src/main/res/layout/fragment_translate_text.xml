@@ -13,8 +13,6 @@
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:text="Text to translate:"
-        android:textColor="@color/black"
-        android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -40,7 +38,11 @@
                 android:id="@+id/textToTranslateEditText"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:hint="Enter text to translate" />
+                android:width="0dp"
+                android:hint="Enter text to translate"
+                android:maxLines="10"
+                android:padding="10dp"
+                android:scrollbars="vertical" />
         </TableRow>
 
 
@@ -49,11 +51,19 @@
             android:layout_height="match_parent"
             android:layout_weight="1">
 
-            <TextView
-                android:id="@+id/translatedTextResults"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:hint="Translated text" />
+            <ScrollView>
+
+                <TextView
+                    android:id="@+id/translatedTextResults"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:width="0dp"
+                    android:hint="Translated text"
+                    android:padding="10dp"
+                    android:textStyle="bold"
+                    android:textColor="@color/black"
+                    android:scrollbars="vertical" />
+            </ScrollView>
         </TableRow>
     </TableLayout>
 
@@ -79,11 +89,12 @@
             android:layout_height="wrap_content"
             android:entries="@array/language_array" />
 
-        <ImageButton
+        <de.hdodenhof.circleimageview.CircleImageView
+            xmlns:app="http://schemas.android.com/apk/res-auto"
             android:id="@+id/mic_button"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@mipmap/ic_launcher_round" />
+            android:layout_width="96dp"
+            android:layout_height="96dp"
+            android:src="@drawable/micrphone_icon" />
 
 
         <Spinner

@@ -31,9 +31,9 @@ import butterknife.Unbinder;
 public class TextTranslateFragment extends Fragment {
 
     @BindView(R.id.textToTranslateEditText)
-    EditText textToTranslate;
+    EditText textToTranslateEditText;
     @BindView(R.id.translatedTextResults)
-    TextView translatedText;
+    TextView translatedTextTextView;
     @BindView(R.id.initialLanguageSelection)
     Spinner initialLanguageSelection;
     @BindView(R.id.translateToLanguageSelection)
@@ -49,6 +49,7 @@ public class TextTranslateFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+
         View view = inflater.inflate(R.layout.fragment_translate_text, container, false);
         unbinder = ButterKnife.bind(this, view);
 
@@ -59,11 +60,11 @@ public class TextTranslateFragment extends Fragment {
     }
 
     private void initializeTextWatcher() {
-        RxTextView.textChanges(textToTranslate)
+        RxTextView.textChanges(textToTranslateEditText)
                 .debounce(1, TimeUnit.SECONDS)
                 .subscribe(textChanged -> {
                     getActivity().runOnUiThread(() ->
-                            translateAndDisplayText(textToTranslate.getText().toString(),
+                            translateAndDisplayText(textToTranslateEditText.getText().toString(),
                                     "en-es"));
                 });
     }
@@ -75,8 +76,8 @@ public class TextTranslateFragment extends Fragment {
 
     @OnClick(R.id.mic_button)
     public void onSpeak() {
-        if (!textToTranslate.getText().toString().isEmpty()) {
-            textToSpeechManager.initQueue(textToTranslate.getText().toString());
+        if (!translatedTextTextView.getText().toString().isEmpty()) {
+            textToSpeechManager.initQueue(translatedTextTextView.getText().toString());
         } else {
             Toast.makeText(getActivity(), R.string.empty_translate_text_input, Toast.LENGTH_SHORT).show();
         }
@@ -88,7 +89,7 @@ public class TextTranslateFragment extends Fragment {
             String translationResult = null;
             try {
                 translationResult = translatorBackgroundTask.execute(textToTranslate, languagePair).get();
-                translatedText.setText(translationResult);
+                translatedTextTextView.setText(translationResult);
 
             } catch (InterruptedException | ExecutionException e) {
                 e.printStackTrace();
