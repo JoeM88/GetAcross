@@ -13,27 +13,21 @@ import android.widget.Toast;
 
 import com.example.josephmolina.getacross.R;
 import com.example.josephmolina.getacross.TextToSpeechManager;
-import com.example.josephmolina.getacross.TranslatorBackgroundTask;
-import com.jakewharton.rxbinding.widget.RxTextView;
-
-import java.util.concurrent.ExecutionException;
-import java.util.concurrent.TimeUnit;
+import com.example.josephmolina.getacross.YandexAPI;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+import butterknife.OnTextChanged;
 import butterknife.Unbinder;
 
 
-/**
- * A simple {@link Fragment} subclass.
- */
 public class TextTranslateFragment extends Fragment {
 
     @BindView(R.id.textToTranslateEditText)
-    EditText textToTranslateEditText;
+    EditText textToBeTranslated;
     @BindView(R.id.translatedTextResults)
-    TextView translatedTextTextView;
+    TextView translatedText;
     @BindView(R.id.initialLanguageSelection)
     Spinner initialLanguageSelection;
     @BindView(R.id.translateToLanguageSelection)
@@ -53,47 +47,30 @@ public class TextTranslateFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_translate_text, container, false);
         unbinder = ButterKnife.bind(this, view);
 
-        initializeTextToSpeechManager(view);
-        initializeTextWatcher();
+        startTextToSpeechManager(view);
+        //startTextWatcher();
 
         return view;
     }
 
-    private void initializeTextWatcher() {
-        RxTextView.textChanges(textToTranslateEditText)
-                .debounce(1, TimeUnit.SECONDS)
-                .subscribe(textChanged -> {
-                    getActivity().runOnUiThread(() ->
-                            translateAndDisplayText(textToTranslateEditText.getText().toString(),
-                                    "en-es"));
-                });
+    private void startTextToSpeechManager(View view) {
+        textToSpeechManager = new TextToSpeechManager();
+        textToSpeechManager.startTextToSpeechManager(view.getContext());
     }
 
-    public void initializeTextToSpeechManager(View view) {
-        textToSpeechManager = new TextToSpeechManager();
-        textToSpeechManager.initialize(view.getContext());
+    @OnTextChanged(R.id.textToTranslateEditText)
+    public void onTextToTranslate() {
+
+        YandexAPI.makeTranslateTextAPICall(textToBeTranslated.getText().toString(), "en-es",
+                response -> getActivity().runOnUiThread(() -> translatedText.setText(response)));
     }
 
     @OnClick(R.id.mic_button)
     public void onSpeak() {
-        if (!translatedTextTextView.getText().toString().isEmpty()) {
-            textToSpeechManager.initQueue(translatedTextTextView.getText().toString());
+        if (!textToBeTranslated.getText().toString().isEmpty()) {
+            textToSpeechManager.startSpeakingText(translatedText.getText().toString());
         } else {
             Toast.makeText(getActivity(), R.string.empty_translate_text_input, Toast.LENGTH_SHORT).show();
-        }
-    }
-
-    private void translateAndDisplayText(String textToTranslate, String languagePair) {
-        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.M) {
-            TranslatorBackgroundTask translatorBackgroundTask = new TranslatorBackgroundTask(getContext());
-            String translationResult = null;
-            try {
-                translationResult = translatorBackgroundTask.execute(textToTranslate, languagePair).get();
-                translatedTextTextView.setText(translationResult);
-
-            } catch (InterruptedException | ExecutionException e) {
-                e.printStackTrace();
-            }
         }
     }
 

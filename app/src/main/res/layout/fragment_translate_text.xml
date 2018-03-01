@@ -96,7 +96,6 @@
             android:layout_height="96dp"
             android:src="@drawable/micrphone_icon" />
 
-
         <Spinner
             android:id="@+id/translateToLanguageSelection"
             android:layout_width="wrap_content"

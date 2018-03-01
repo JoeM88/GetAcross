@@ -17,7 +17,7 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
         buildTypes.each {
-            it.buildConfigField "String", "YANDEX_API_TOKEN", API_TOKEN
+            it.buildConfigField "String", "YANDEX_API_KEY", API_KEY
         }
     }
     compileOptions {
@@ -43,5 +43,11 @@ dependencies {
     compile 'com.jakewharton.rxbinding:rxbinding:0.4.0'
 
     compile 'de.hdodenhof:circleimageview:2.2.0'
+
+    implementation 'com.squareup.okhttp3:okhttp:3.9.1'
+
+    compile 'com.google.code.gson:gson:2.8.2'
+    compile 'com.squareup.retrofit2:retrofit:2.3.0'
+    compile 'com.squareup.retrofit2:converter-gson:2.3.0'
 
 }

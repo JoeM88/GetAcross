@@ -1,11 +1,7 @@
 package com.example.josephmolina.getacross;
 
-/**
- * Created by josephmolina on 1/31/18.
- */
-
-import android.content.Context;
 import android.os.AsyncTask;
+import android.util.Log;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -15,22 +11,21 @@ import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
 
+/**
+ * Created by josephmolina on 2/13/18.
+ */
 
-public class TranslatorBackgroundTask extends AsyncTask<String, Void, String> {
-    public TranslatorBackgroundTask(Context cntxt) {
-        Context context = cntxt;
-    }
+public class DetectLanguageBackgroundTask extends AsyncTask<String, Void, String> {
 
     @Override
     protected String doInBackground(String... params) {
         String textToBeTranslated = params[0];
-        String languagePair = params[1];
-        String jsonString;
+        String jsonString = null;
 
         try {
-            String yandexKey = BuildConfig.YANDEX_API_TOKEN;
-            String yandexUrl = "https://translate.yandex.net/api/v1.5/tr.json/translate?key=" + yandexKey
-                    + "&text=" + textToBeTranslated + "&lang=" + languagePair;
+            String yandexKey = BuildConfig.YANDEX_API_KEY;
+            String yandexUrl = "https://translate.yandex.net/api/v1.5/tr.json/detect?key=" + yandexKey
+                    + "&text=" + textToBeTranslated;
             URL yandexTranslateURL = new URL(yandexUrl);
 
             HttpURLConnection httpJsonConnection = (HttpURLConnection) yandexTranslateURL.openConnection();
@@ -45,10 +40,10 @@ public class TranslatorBackgroundTask extends AsyncTask<String, Void, String> {
             bufferedReader.close();
             inputStream.close();
             httpJsonConnection.disconnect();
-
             String resultString = parseTranslatedString(jsonStringBuilder.toString().trim());
 
             return resultString;
+            //jsonString = jsonStringBuilder.toString();
 
         } catch (MalformedURLException e) {
             e.printStackTrace();
@@ -61,28 +56,14 @@ public class TranslatorBackgroundTask extends AsyncTask<String, Void, String> {
     private static String parseTranslatedString(String jsonStringBuilder) {
 
         String resultString = jsonStringBuilder.toString().trim();
+        Log.d("result string", resultString);
 
-        resultString = resultString.substring(resultString.indexOf('[') + 1);
-        resultString = resultString.substring(0, resultString.indexOf("]"));
-
-        resultString = resultString.substring(resultString.indexOf("\"") + 1);
-        resultString = resultString.substring(0, resultString.indexOf("\""));
+//        resultString = resultString.substring(resultString.indexOf('[') + 1);
+//        resultString = resultString.substring(0, resultString.indexOf("]"));
+//
+//        resultString = resultString.substring(resultString.indexOf("\"") + 1);
+//        resultString = resultString.substring(0, resultString.indexOf("\""));
 
         return resultString;
     }
-
-    @Override
-    protected void onPreExecute() {
-        super.onPreExecute();
-    }
-
-    @Override
-    protected void onPostExecute(String result) {
-    }
-
-    @Override
-    protected void onProgressUpdate(Void... values) {
-        super.onProgressUpdate(values);
-    }
-
 }

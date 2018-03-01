@@ -1,36 +1,69 @@
 package com.example.josephmolina.getacross;
 
-import java.io.BufferedReader;
+import android.support.annotation.NonNull;
+import android.util.Log;
+
+import com.example.josephmolina.getacross.GsonUtils.GsonUtils;
+import com.example.josephmolina.getacross.Models.YandexResponse;
+import com.google.gson.Gson;
+
 import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.net.URL;
-import java.net.URLConnection;
+
+import okhttp3.Call;
+import okhttp3.Callback;
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import okhttp3.Response;
 
 /**
  * Created by josephmolina on 2/1/18.
  */
 
 public class YandexAPI {
-    private static String languageDetectionURL = "https://translate.yandex.net/api/v1.5/tr.json/detect?key=";
+    private final static String YANDEX_TRANSLATE_URL = "https://translate.yandex.net/api/v1.5/tr.json/";
+    private final static String TRANSLATION_KEY_PARAMETER = "translate?key=";
+    private final static String DETECTION_KEY_PARAMETER = "detect?key=";
+    private final static String TEXT_QUERY_PARAMETER = "&text=";
+    private final static String LANGUAGE_QUERY_PARAMETER = "&lang=";
 
-    private static String request(String URL) throws IOException {
-        java.net.URL url = new URL(URL);
-        URLConnection urlConn = url.openConnection();
+    private final static OkHttpClient client = NetworkUtils.getOkHttpClient();
+    private final static Gson gson = GsonUtils.getGsonInstance();
 
-        InputStream inStream = urlConn.getInputStream();
-        String received = new BufferedReader(new InputStreamReader(inStream)).readLine();
+    public static void makeTranslateTextAPICall(String textToTranslate, String languagePair, YandexAPICallback yandexAPICallback) {
+        String url = buildYandexTranslateUrl(textToTranslate,languagePair);
 
-        inStream.close();
-        return received;
+        Request request = buildYandexRequest(url.toString());
+
+        client.newCall(request).enqueue(new Callback() {
+            @Override
+            public void onFailure(@NonNull Call call, @NonNull IOException e) {
+                Log.d("onFailure", "failure reached");
+            }
+
+            @Override
+            public void onResponse(@NonNull Call call, @NonNull Response response) throws IOException {
+                String apiResponse = response.body().string();
+                YandexResponse yandexResponse = gson.fromJson(apiResponse, YandexResponse.class);
+                yandexAPICallback.onResponseReceived(String.valueOf(yandexResponse.getText()));
+            }
+        });
     }
 
-    public static String detectLanguage(String text) throws IOException {
-        String response = request(generateURL(text));
-        return response.substring(response.indexOf("lang") + 7, response.length() - 2);
+    private static String buildYandexTranslateUrl(String textToTranslate, String languagePair) {
+        StringBuilder url = new StringBuilder(YANDEX_TRANSLATE_URL);
+        url.append(TRANSLATION_KEY_PARAMETER);
+        url.append(BuildConfig.YANDEX_API_KEY);
+        url.append(TEXT_QUERY_PARAMETER);
+        url.append(textToTranslate);
+        url.append(LANGUAGE_QUERY_PARAMETER );
+        url.append(languagePair);
+
+        return url.toString();
     }
 
-    private static String generateURL(String text) {
-        return languageDetectionURL + BuildConfig.YANDEX_API_TOKEN + "&text=" + text;
+    private static Request buildYandexRequest(String url) {
+        return new Request.Builder()
+                .url(url)
+                .build();
     }
 }
