@@ -3,6 +3,9 @@ package com.example.josephmolina.getacross.Fragments;
 
 import android.app.Fragment;
 import android.os.Bundle;
+import android.os.Handler;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,11 +17,11 @@ import android.widget.Toast;
 import com.example.josephmolina.getacross.R;
 import com.example.josephmolina.getacross.TextToSpeechManager;
 import com.example.josephmolina.getacross.YandexAPI;
+import com.example.josephmolina.getacross.YandexAPICallback;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
-import butterknife.OnTextChanged;
 import butterknife.Unbinder;
 
 
@@ -35,6 +38,10 @@ public class TextTranslateFragment extends Fragment {
 
     private Unbinder unbinder;
     private TextToSpeechManager textToSpeechManager = null;
+    private final Handler handler = new Handler();
+    private Runnable workRunnable;
+    private final String english = "en";
+    private final String spanish = "es";
 
     public TextTranslateFragment() {
         // Required empty public constructor
@@ -48,21 +55,65 @@ public class TextTranslateFragment extends Fragment {
         unbinder = ButterKnife.bind(this, view);
 
         startTextToSpeechManager(view);
-        //startTextWatcher();
+        textToBeTranslated.addTextChangedListener(new TextWatcher() {
 
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                handler.removeCallbacks(workRunnable);
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                workRunnable = new Runnable() {
+                    @Override
+                    public void run() {
+                        if (textToBeTranslated.getText().length() >= 1) {
+                            String inputtedText = textToBeTranslated.getText().toString();
+                            YandexAPI.detectLanguageAPICall(inputtedText, new YandexAPICallback() {
+                                @Override
+                                public void onResponseReceived(String response) {
+                                    String languagePair = determineLanguageToTranslateTo(response);
+                                    translateText(languagePair);
+                                }
+                            });
+                        }
+                    }
+                };
+                handler.postDelayed(workRunnable, 500);
+            }
+        });
         return view;
+    }
+
+    private String determineLanguageToTranslateTo(String languageDetected) {
+        String translationLanguage = null;
+
+        if (languageDetected.equals(english)) {
+            translationLanguage = spanish;
+        } else if (languageDetected.equals(spanish)) {
+            translationLanguage = english;
+        }
+
+        return new StringBuilder().
+                append(languageDetected).append("-").
+                append(translationLanguage).toString();
+    }
+
+    private void translateText(String languagePair) {
+        YandexAPI.translateTextAPICall(textToBeTranslated.getText().toString(), languagePair,
+                response -> {
+                    getActivity().runOnUiThread(() -> translatedText.setText(response));
+                });
     }
 
     private void startTextToSpeechManager(View view) {
         textToSpeechManager = new TextToSpeechManager();
         textToSpeechManager.startTextToSpeechManager(view.getContext());
-    }
-
-    @OnTextChanged(R.id.textToTranslateEditText)
-    public void onTextToTranslate() {
-
-        YandexAPI.makeTranslateTextAPICall(textToBeTranslated.getText().toString(), "en-es",
-                response -> getActivity().runOnUiThread(() -> translatedText.setText(response)));
     }
 
     @OnClick(R.id.mic_button)
