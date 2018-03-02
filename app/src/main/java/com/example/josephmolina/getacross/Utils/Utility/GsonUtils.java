@@ -1,4 +1,4 @@
-package com.example.josephmolina.getacross.GsonUtils;
+package com.example.josephmolina.getacross.Utils.Utility;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;

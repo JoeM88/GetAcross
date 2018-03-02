@@ -17,7 +17,6 @@ import android.widget.Toast;
 import com.example.josephmolina.getacross.R;
 import com.example.josephmolina.getacross.TextToSpeechManager;
 import com.example.josephmolina.getacross.YandexAPI;
-import com.example.josephmolina.getacross.YandexAPICallback;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -56,7 +55,6 @@ public class TextTranslateFragment extends Fragment {
 
         startTextToSpeechManager(view);
         textToBeTranslated.addTextChangedListener(new TextWatcher() {
-
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
 
@@ -69,19 +67,13 @@ public class TextTranslateFragment extends Fragment {
 
             @Override
             public void afterTextChanged(Editable s) {
-                workRunnable = new Runnable() {
-                    @Override
-                    public void run() {
-                        if (textToBeTranslated.getText().length() >= 1) {
-                            String inputtedText = textToBeTranslated.getText().toString();
-                            YandexAPI.detectLanguageAPICall(inputtedText, new YandexAPICallback() {
-                                @Override
-                                public void onResponseReceived(String response) {
-                                    String languagePair = determineLanguageToTranslateTo(response);
-                                    translateText(languagePair);
-                                }
-                            });
-                        }
+                workRunnable = () -> {
+                    if (textToBeTranslated.getText().length() >= 1) {
+                        String inputtedText = textToBeTranslated.getText().toString();
+                        YandexAPI.detectLanguageAPICall(inputtedText, response -> {
+                            String languagePair = determineLanguageToTranslateTo(response);
+                            translateText(languagePair);
+                        });
                     }
                 };
                 handler.postDelayed(workRunnable, 500);
@@ -99,9 +91,8 @@ public class TextTranslateFragment extends Fragment {
             translationLanguage = english;
         }
 
-        return new StringBuilder().
-                append(languageDetected).append("-").
-                append(translationLanguage).toString();
+        return languageDetected + "-" +
+                translationLanguage;
     }
 
     private void translateText(String languagePair) {

@@ -3,9 +3,10 @@ package com.example.josephmolina.getacross;
 import android.support.annotation.NonNull;
 import android.util.Log;
 
-import com.example.josephmolina.getacross.GsonUtils.GsonUtils;
+import com.example.josephmolina.getacross.Utils.Utility.GsonUtils;
 import com.example.josephmolina.getacross.Models.DetectLanguageResponse;
 import com.example.josephmolina.getacross.Models.YandexResponse;
+import com.example.josephmolina.getacross.Utils.Utility.NetworkUtils;
 import com.google.gson.Gson;
 
 import java.io.IOException;
