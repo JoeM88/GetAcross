@@ -6,28 +6,19 @@
     android:layout_height="match_parent"
     tools:layout_editor_absoluteY="81dp">
 
-    <TextView
-        android:id="@+id/textView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:text="Text to translate:"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
     <TableLayout
         android:id="@+id/tableLayout"
-        android:layout_width="368dp"
+        android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_marginBottom="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
         android:stretchColumns="0"
-        app:layout_constraintBottom_toTopOf="@+id/linearLayout"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView">
+        app:layout_constraintTop_toTopOf="parent">
 
         <TableRow
             android:layout_width="match_parent"
@@ -39,15 +30,27 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:width="0dp"
-                android:hint="Enter text to translate"
+                android:gravity="top|start"
+                android:hint="@string/User_input_translate_text_hint"
                 android:maxLines="10"
                 android:padding="10dp"
                 android:scrollbars="vertical" />
         </TableRow>
 
 
-        <TableRow
+        <TextView
             android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:width="0dp"
+            android:padding="10dp"
+            android:scrollbars="vertical"
+            android:text="@string/Translated_text_section_title"
+            android:textColor="@color/black"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+
+        <TableRow
+            android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_weight="1">
 
@@ -55,52 +58,14 @@
 
                 <TextView
                     android:id="@+id/translatedTextResults"
-                    android:layout_width="match_parent"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:width="0dp"
-                    android:hint="Translated text"
-                    android:padding="10dp"
-                    android:textStyle="bold"
+                    android:scrollbars="vertical"
+                    android:maxLines="10"
                     android:textColor="@color/black"
-                    android:scrollbars="vertical" />
+                    android:textStyle="bold" />
             </ScrollView>
         </TableRow>
     </TableLayout>
-
-    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        android:id="@+id/linearLayout"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginStart="8dp"
-        android:gravity="center|top"
-        android:orientation="horizontal"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintStart_toStartOf="parent">
-
-        <Spinner
-            android:id="@+id/initialLanguageSelection"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:entries="@array/language_array" />
-
-        <de.hdodenhof.circleimageview.CircleImageView
-            xmlns:app="http://schemas.android.com/apk/res-auto"
-            android:id="@+id/mic_button"
-            android:layout_width="96dp"
-            android:layout_height="96dp"
-            android:src="@drawable/micrphone_icon" />
-
-        <Spinner
-            android:id="@+id/translateToLanguageSelection"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
-
-    </LinearLayout>
 
 </android.support.constraint.ConstraintLayout>

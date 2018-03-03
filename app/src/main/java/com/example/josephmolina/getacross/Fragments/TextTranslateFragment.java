@@ -10,9 +10,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
-import android.widget.Spinner;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.example.josephmolina.getacross.R;
 import com.example.josephmolina.getacross.TextToSpeechManager;
@@ -20,7 +18,6 @@ import com.example.josephmolina.getacross.YandexAPI;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import butterknife.OnClick;
 import butterknife.Unbinder;
 
 
@@ -30,10 +27,6 @@ public class TextTranslateFragment extends Fragment {
     EditText textToBeTranslated;
     @BindView(R.id.translatedTextResults)
     TextView translatedText;
-    @BindView(R.id.initialLanguageSelection)
-    Spinner initialLanguageSelection;
-    @BindView(R.id.translateToLanguageSelection)
-    Spinner translateToLanguageSelection;
 
     private Unbinder unbinder;
     private TextToSpeechManager textToSpeechManager = null;
@@ -105,15 +98,6 @@ public class TextTranslateFragment extends Fragment {
     private void startTextToSpeechManager(View view) {
         textToSpeechManager = new TextToSpeechManager();
         textToSpeechManager.startTextToSpeechManager(view.getContext());
-    }
-
-    @OnClick(R.id.mic_button)
-    public void onSpeak() {
-        if (!textToBeTranslated.getText().toString().isEmpty()) {
-            textToSpeechManager.startSpeakingText(translatedText.getText().toString());
-        } else {
-            Toast.makeText(getActivity(), R.string.empty_translate_text_input, Toast.LENGTH_SHORT).show();
-        }
     }
 
     @Override

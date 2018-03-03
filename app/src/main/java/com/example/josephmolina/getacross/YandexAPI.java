@@ -60,6 +60,7 @@ public class YandexAPI {
             @Override
             public void onFailure(Call call, IOException e) {
                 Log.d("onFailure", "failure reached");
+                Log.d("onFailure--->", e.getMessage());
             }
 
             @Override
