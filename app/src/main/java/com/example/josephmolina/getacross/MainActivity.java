@@ -3,9 +3,12 @@ package com.example.josephmolina.getacross;
 import android.app.Fragment;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
+import android.content.Context;
 import android.os.Bundle;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v7.app.AppCompatActivity;
+import android.view.MotionEvent;
+import android.view.inputmethod.InputMethodManager;
 
 import com.example.josephmolina.getacross.Fragments.TextTranslateFragment;
 import com.example.josephmolina.getacross.Fragments.VoiceTranslateFragment;
@@ -52,4 +55,12 @@ public class MainActivity extends AppCompatActivity {
         transaction.replace(R.id.content, fragment).commit();
     }
 
+    @Override
+    public boolean onTouchEvent(MotionEvent event) {
+        InputMethodManager imm = (InputMethodManager)getSystemService(Context.
+                INPUT_METHOD_SERVICE);
+        assert imm != null;
+        imm.hideSoftInputFromWindow(getCurrentFocus().getWindowToken(), 0);
+        return true;
+    }
 }
