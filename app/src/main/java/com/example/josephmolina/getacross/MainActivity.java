@@ -28,6 +28,9 @@ public class MainActivity extends AppCompatActivity {
                     case R.id.navigation_text_translate:
                         displayFragment(new TextTranslateFragment());
                         return true;
+                    default:
+                        displayFragment(new TextTranslateFragment());
+                        break;
                 }
                 return false;
             };
@@ -37,6 +40,9 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
+        if (savedInstanceState == null) {
+            displayFragment(new TextTranslateFragment());
+        }
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
     }
 

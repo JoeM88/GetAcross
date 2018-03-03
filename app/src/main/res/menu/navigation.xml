@@ -2,6 +2,11 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item
+        android:id="@+id/navigation_text_translate"
+        android:icon="@drawable/ic_g_translate_black_24dp"
+        android:title="@string/text_translate_title" />
+
+    <item
         android:id="@+id/navigation_photo_translate"
         android:icon="@drawable/ic_home_black_24dp"
         android:title="@string/photo_translate_title" />
@@ -10,10 +15,5 @@
         android:id="@+id/navigation__voice_translate"
         android:icon="@drawable/ic_record_voice_over_black_24dp"
         android:title="@string/voice_translate_title"/>
-
-    <item
-        android:id="@+id/navigation_text_translate"
-        android:icon="@drawable/ic_g_translate_black_24dp"
-        android:title="@string/text_translate_title" />
 
 </menu>
