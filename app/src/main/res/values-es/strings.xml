@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Qué dijiste</string>
+    <string name="photo_translate_title">Traducir Foto</string>
+    <string name="voice_translate_title">Traducir la voz</string>
+    <string name="text_translate_title">Traducción de texto</string>
+    <string name="voice_recorder_prompt">¿Qué te gustaría que tradujera?</string>
+    <string name="empty_translate_text_input">Por favor ingrese el texto para traducir</string>
+    <string name="textToSpeech_not_initialized_error">TextToSpeech no se inicializó</string>
+    <string name="textToSpeech_initialization_failed_error">Inicialización falló</string>
+    <string name="unsupported_language_error">Este idioma no es compatible</string>
+    <string name="Translated_text_section_title">Lo que oirán:</string>
+    <string name="User_input_translate_text_hint">Ingrese el texto para traducir</string>
+
+</resources>

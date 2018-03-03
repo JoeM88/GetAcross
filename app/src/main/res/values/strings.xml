@@ -11,9 +11,4 @@
     <string name="Translated_text_section_title">What they will hear:</string>
     <string name="User_input_translate_text_hint">Enter text to translate</string>
 
-    <string-array name="language_array">
-        <item>English</item>
-        <item>Spanish</item>
-    </string-array>
-
 </resources>
