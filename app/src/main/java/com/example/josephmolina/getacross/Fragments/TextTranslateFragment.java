@@ -35,6 +35,10 @@ public class TextTranslateFragment extends Fragment {
     private final String english = "en";
     private final String spanish = "es";
 
+    private final String INPUTTED_TEXT_KEY = "textToBeTranslated";
+    private final String TRANSLATED_TEXT = "translatedText";
+
+
     public TextTranslateFragment() {
         // Required empty public constructor
     }
