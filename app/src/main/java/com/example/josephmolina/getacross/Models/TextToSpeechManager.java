@@ -1,8 +1,10 @@
-package com.example.josephmolina.getacross;
+package com.example.josephmolina.getacross.Models;
 
 import android.content.Context;
 import android.speech.tts.TextToSpeech;
 import android.widget.Toast;
+
+import com.example.josephmolina.getacross.R;
 
 import java.util.Locale;
 

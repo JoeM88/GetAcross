@@ -13,11 +13,12 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 import com.example.josephmolina.getacross.R;
-import com.example.josephmolina.getacross.TextToSpeechManager;
+import com.example.josephmolina.getacross.Models.TextToSpeechManager;
 import com.example.josephmolina.getacross.YandexAPI;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 import butterknife.Unbinder;
 
 
@@ -102,6 +103,13 @@ public class TextTranslateFragment extends Fragment {
     private void startTextToSpeechManager(View view) {
         textToSpeechManager = new TextToSpeechManager();
         textToSpeechManager.startTextToSpeechManager(view.getContext());
+    }
+
+    @OnClick(R.id.textToSpeechButton)
+    public void onTextToSpeech() {
+        if (!translatedText.getText().toString().isEmpty()) {
+            textToSpeechManager.startSpeakingText(translatedText.getText().toString());
+        }
     }
 
     @Override

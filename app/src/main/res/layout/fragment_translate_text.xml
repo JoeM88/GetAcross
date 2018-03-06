@@ -35,6 +35,7 @@
                 android:maxLines="10"
                 android:padding="10dp"
                 android:scrollbars="vertical" />
+
         </TableRow>
 
 
@@ -58,13 +59,21 @@
                     android:id="@+id/translatedTextResults"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:scrollbars="vertical"
-                    android:maxLines="10"
-                    android:textSize="18sp"
                     android:layout_margin="10dp"
+                    android:maxLines="10"
+                    android:scrollbars="vertical"
                     android:textColor="@color/black"
+                    android:textSize="18sp"
                     android:textStyle="bold" />
             </ScrollView>
+
+            <ImageButton
+                android:id="@+id/textToSpeechButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom"
+                android:src="@drawable/ic_record_voice_over_black_24dp" />
+
         </TableRow>
     </TableLayout>
 
