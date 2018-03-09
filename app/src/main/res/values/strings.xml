@@ -12,9 +12,8 @@
     <string name="User_input_translate_text_hint">Enter text to translate</string>
     <string name="navigation_saved_chats">Saved Chats</string>
 
-    <string-array name="language_array">
-        <item>English</item>
-        <item>Spanish</item>
-    </string-array>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="snapshot_button">Snapshot button</string>
 
 </resources>
