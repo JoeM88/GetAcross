@@ -1,6 +1,5 @@
 package com.example.josephmolina.getacross;
 
-import android.Manifest;
 import android.app.Fragment;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
@@ -8,19 +7,12 @@ import android.content.Context;
 import android.os.Bundle;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.view.MotionEvent;
 import android.view.inputmethod.InputMethodManager;
 
 import com.example.josephmolina.getacross.Fragments.PhotoTranslateFragment;
 import com.example.josephmolina.getacross.Fragments.TextTranslateFragment;
 import com.example.josephmolina.getacross.Fragments.VoiceTranslateFragment;
-import com.karumi.dexter.Dexter;
-import com.karumi.dexter.PermissionToken;
-import com.karumi.dexter.listener.PermissionDeniedResponse;
-import com.karumi.dexter.listener.PermissionGrantedResponse;
-import com.karumi.dexter.listener.PermissionRequest;
-import com.karumi.dexter.listener.single.PermissionListener;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -29,20 +21,28 @@ public class MainActivity extends AppCompatActivity {
     @BindView(R.id.navigation)
     BottomNavigationView navigation;
 
+//    final TextTranslateFragment textTranslateFragment = new TextTranslateFragment();
+//    final PhotoTranslateFragment photoTranslateFragment = new PhotoTranslateFragment();
+//    final VoiceTranslateFragment voiceTranslateFragment = new VoiceTranslateFragment();
+
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
             = item -> {
                 switch (item.getItemId()) {
                     case R.id.navigation_photo_translate:
+                       //displayFragment(photoTranslateFragment);
                         displayFragment(new PhotoTranslateFragment());
                         return true;
                     case R.id.navigation__voice_translate:
+                        //displayFragment(voiceTranslateFragment);
                         displayFragment(new VoiceTranslateFragment());
                         return true;
                     case R.id.navigation_text_translate:
+                        //displayFragment(textTranslateFragment);
                         displayFragment(new TextTranslateFragment());
                         return true;
                     default:
                         displayFragment(new TextTranslateFragment());
+                        //displayFragment(textTranslateFragment);
                         break;
                 }
                 return false;
@@ -56,33 +56,16 @@ public class MainActivity extends AppCompatActivity {
         if (savedInstanceState == null) {
             displayFragment(new TextTranslateFragment());
         }
+
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
-        Dexter.withActivity(this)
-                .withPermission(Manifest.permission.CAMERA)
-                .withListener(new PermissionListener() {
-                    @Override
-                    public void onPermissionGranted(PermissionGrantedResponse response) {
-                        Log.d("onpermssion", "granted");
-                    }
-
-                    @Override
-                    public void onPermissionDenied(PermissionDeniedResponse response) {
-
-                    }
-
-                    @Override
-                    public void onPermissionRationaleShouldBeShown(PermissionRequest permission, PermissionToken token) {
-
-                    }
-                })
-                .check();
-
     }
 
     private void displayFragment(Fragment fragment) {
         FragmentManager fragmentManager = getFragmentManager();
         FragmentTransaction transaction = fragmentManager.beginTransaction();
-        transaction.replace(R.id.content, fragment).commit();
+        transaction.replace(R.id.content, fragment);
+        transaction.addToBackStack(null);
+        transaction.commit();
     }
 
     @Override

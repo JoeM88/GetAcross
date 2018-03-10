@@ -4,11 +4,14 @@ package com.example.josephmolina.getacross.Fragments;
 import android.app.Fragment;
 import android.graphics.PointF;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 
 import com.example.josephmolina.getacross.R;
+import com.example.josephmolina.getacross.Utils.Utility.DexterCameraPermission;
 import com.otaliastudios.cameraview.CameraException;
 import com.otaliastudios.cameraview.CameraListener;
 import com.otaliastudios.cameraview.CameraOptions;
@@ -18,6 +21,7 @@ import java.io.File;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 import butterknife.Unbinder;
 
 /**
@@ -27,6 +31,8 @@ public class PhotoTranslateFragment extends Fragment {
     private Unbinder unbinder;
     @BindView(R.id.camera)
     CameraView cameraView;
+    @BindView(R.id.snapshotButton)
+    ImageView snapshotButton;
     public PhotoTranslateFragment() {
         // Required empty public constructor
     }
@@ -38,6 +44,7 @@ public class PhotoTranslateFragment extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_photo_translate, container, false);
         unbinder = ButterKnife.bind(this, view);
+        DexterCameraPermission.checkCameraPermission(getActivity());
         cameraView.addCameraListener(new CameraListener() {
 
             /**
@@ -45,13 +52,17 @@ public class PhotoTranslateFragment extends Fragment {
              * The options object collects all supported options by the current camera.
              */
             @Override
-            public void onCameraOpened(CameraOptions options) {}
+            public void onCameraOpened(CameraOptions options) {
+                snapshotButton.setVisibility(View.VISIBLE);
+            }
 
             /**
              * Notifies that the camera session was closed.
              */
             @Override
-            public void onCameraClosed() {}
+            public void onCameraClosed() {
+                snapshotButton.setVisibility(View.INVISIBLE);
+            }
 
             /**
              * Notifies about an error during the camera setup or configuration.
@@ -123,6 +134,11 @@ public class PhotoTranslateFragment extends Fragment {
         return view;
     }
 
+    @OnClick(R.id.snapshotButton)
+    public void onSnapShotButton() {
+        Log.d("SNAPSHOT","button was pressed!");
+    }
+
     @Override
     public void onResume() {
         super.onResume();
@@ -140,8 +156,4 @@ public class PhotoTranslateFragment extends Fragment {
         super.onDestroy();
         cameraView.destroy();
     }
-
-
-
-
 }

@@ -116,4 +116,21 @@ public class TextTranslateFragment extends Fragment {
         super.onDestroy();
         textToSpeechManager.shutDown();
     }
+
+//    @Override
+//    public void onSaveInstanceState(Bundle savedInstanceState) {
+//        super.onSaveInstanceState(savedInstanceState);
+//
+//        savedInstanceState.putString("TEXT_TO_TRANSLATE", textToBeTranslated.getText().toString());
+//    }
+//
+//    @Override
+//    public void onActivityCreated(Bundle savedInstanceState) {
+//        super.onActivityCreated(savedInstanceState);
+//
+//        if (savedInstanceState != null) {
+//            String text = savedInstanceState.getString("TEXT_TO_TRANSLATE");
+//            textToBeTranslated.setText(text);
+//        }
+//     }
 }

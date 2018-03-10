@@ -7,55 +7,23 @@
     tools:layout_editor_absoluteY="81dp">
 
     <FrameLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content">
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
         <com.otaliastudios.cameraview.CameraView
             android:id="@+id/camera"
-            android:layout_width="384dp"
-            android:layout_height="307dp">
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
 
-            <ImageView
-                android:id="@+id/imageView"
-                android:layout_width="66dp"
-                android:layout_height="66dp"
-                android:contentDescription="@string/snapshot_button"
-                android:layout_gravity="bottom|center"
-                app:srcCompat="@drawable/snapshot_circle" />
-        </com.otaliastudios.cameraview.CameraView>
+        <ImageView
+            android:id="@+id/snapshotButton"
+            android:src="@drawable/snapshot_circle"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_gravity="center_horizontal|bottom"
+            android:layout_margin="30dp"
+            android:contentDescription="TODO" />
 
     </FrameLayout>
-
-    <android.support.constraint.Guideline
-        android:id="@+id/guideline5"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.6"
-        app:layout_constraintGuide_begin="20dp" />
-
-
-    <!-- <TextView
-        android:id="@+id/textView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Translated Text"
-        tools:layout_editor_absoluteX="143dp"
-        tools:layout_editor_absoluteY="400dp" />
-
-    <android.support.constraint.Guideline
-        android:id="@+id/guideline2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.6" />
-
-    <android.support.constraint.Guideline
-        android:id="@+id/guideline3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.039138943" /> -->
-
 
 </android.support.constraint.ConstraintLayout>
