@@ -11,8 +11,8 @@ import android.view.MotionEvent;
 import android.view.inputmethod.InputMethodManager;
 
 import com.example.josephmolina.getacross.Fragments.PhotoTranslateFragment;
+import com.example.josephmolina.getacross.Fragments.SavedChatsFragment;
 import com.example.josephmolina.getacross.Fragments.TextTranslateFragment;
-import com.example.josephmolina.getacross.Fragments.VoiceTranslateFragment;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -34,7 +34,7 @@ public class MainActivity extends AppCompatActivity {
                         return true;
                     case R.id.navigation__voice_translate:
                         //displayFragment(voiceTranslateFragment);
-                        displayFragment(new VoiceTranslateFragment());
+                        displayFragment(new SavedChatsFragment());
                         return true;
                     case R.id.navigation_text_translate:
                         //displayFragment(textTranslateFragment);
