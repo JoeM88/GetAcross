@@ -7,6 +7,9 @@ import android.content.Context;
 import android.os.Bundle;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v7.app.AppCompatActivity;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.inputmethod.InputMethodManager;
 
@@ -20,10 +23,6 @@ import butterknife.ButterKnife;
 public class MainActivity extends AppCompatActivity {
     @BindView(R.id.navigation)
     BottomNavigationView navigation;
-
-//    final TextTranslateFragment textTranslateFragment = new TextTranslateFragment();
-//    final PhotoTranslateFragment photoTranslateFragment = new PhotoTranslateFragment();
-//    final VoiceTranslateFragment voiceTranslateFragment = new VoiceTranslateFragment();
 
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
             = item -> {
@@ -53,10 +52,10 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
+
         if (savedInstanceState == null) {
             displayFragment(new TextTranslateFragment());
         }
-
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
     }
 
@@ -75,5 +74,23 @@ public class MainActivity extends AppCompatActivity {
         assert imm != null;
         imm.hideSoftInputFromWindow(getCurrentFocus().getWindowToken(), 0);
         return true;
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.actionbar, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.action_save_translation:
+                return true;
+
+            default:
+                return super.onOptionsItemSelected(item);
+        }
     }
 }

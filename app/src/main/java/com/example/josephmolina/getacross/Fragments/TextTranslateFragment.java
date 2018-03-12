@@ -18,7 +18,6 @@ import com.example.josephmolina.getacross.YandexAPI;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import butterknife.OnClick;
 import butterknife.Unbinder;
 
 
@@ -104,12 +103,12 @@ public class TextTranslateFragment extends Fragment {
         textToSpeechManager.startTextToSpeechManager(view.getContext());
     }
 
-    @OnClick(R.id.textToSpeechButton)
-    public void onTextToSpeech() {
-        if (!translatedText.getText().toString().isEmpty()) {
-            textToSpeechManager.startSpeakingText(translatedText.getText().toString());
-        }
-    }
+//    @OnClick(R.id.textToSpeechButton)
+//    public void onTextToSpeech() {
+//        if (!translatedText.getText().toString().isEmpty()) {
+//            textToSpeechManager.startSpeakingText(translatedText.getText().toString());
+//        }
+//    }
 
     @Override
     public void onDestroy() {
