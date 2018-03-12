@@ -1,11 +1,10 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <!-- "Mark Favorite", should appear as action button if possible -->
     <item
         android:id="@+id/action_save_translation"
         android:icon="@drawable/ic_add_box_white_24dp"
-        android:title="Save text translation"
+        android:title="@string/save_text_translation_title"
         app:showAsAction="ifRoom"/>
 
 
