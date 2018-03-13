@@ -14,7 +14,7 @@ import java.util.Locale;
 
 public class TextToSpeechManager {
 
-    private TextToSpeech textToSpeechManager = null;
+    public static TextToSpeech textToSpeechManager = null;
     private boolean isInitialized = false;
     private Context context = null;
 

@@ -47,6 +47,7 @@ public class YandexAPI {
                 String bodyOfResponse = response.body().string();
                 YandexResponse yandexResponse = gson.fromJson(bodyOfResponse, YandexResponse.class);
                 String text = String.valueOf(yandexResponse.getText());
+                text = text.substring(1, text.length() - 1);
                 yandexAPICallback.onResponseReceived(text);
             }
         });

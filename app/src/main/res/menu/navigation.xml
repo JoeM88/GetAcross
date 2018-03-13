@@ -12,7 +12,7 @@
         android:title="@string/photo_translate_title" />
 
     <item
-        android:id="@+id/navigation__voice_translate"
+        android:id="@+id/navigation__saved_chats"
         android:icon="@drawable/ic_chat_black_24dp"
         android:title="@string/navigation_saved_chats"/>
 

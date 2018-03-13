@@ -24,24 +24,24 @@ public class MainActivity extends AppCompatActivity {
     @BindView(R.id.navigation)
     BottomNavigationView navigation;
 
+    TextTranslateFragment textTranslateFragment = new TextTranslateFragment();
+    PhotoTranslateFragment photoTranslateFragment = new PhotoTranslateFragment();
+    SavedChatsFragment savedChatsFragment = new SavedChatsFragment();
+
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
             = item -> {
                 switch (item.getItemId()) {
                     case R.id.navigation_photo_translate:
-                       //displayFragment(photoTranslateFragment);
-                        displayFragment(new PhotoTranslateFragment());
+                        displayFragment(photoTranslateFragment);
                         return true;
-                    case R.id.navigation__voice_translate:
-                        //displayFragment(voiceTranslateFragment);
-                        displayFragment(new SavedChatsFragment());
+                    case R.id.navigation__saved_chats:
+                        displayFragment(savedChatsFragment);
                         return true;
                     case R.id.navigation_text_translate:
-                        //displayFragment(textTranslateFragment);
-                        displayFragment(new TextTranslateFragment());
+                        displayFragment(textTranslateFragment);
                         return true;
                     default:
-                        displayFragment(new TextTranslateFragment());
-                        //displayFragment(textTranslateFragment);
+                        displayFragment(textTranslateFragment);
                         break;
                 }
                 return false;
@@ -88,6 +88,10 @@ public class MainActivity extends AppCompatActivity {
         switch (item.getItemId()) {
             case R.id.action_save_translation:
                 return true;
+
+            case R.id.action_speak_translation:
+                textTranslateFragment.onActionSpeak();
+                return  true;
 
             default:
                 return super.onOptionsItemSelected(item);

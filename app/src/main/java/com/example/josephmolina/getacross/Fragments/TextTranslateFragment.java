@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -34,10 +35,6 @@ public class TextTranslateFragment extends Fragment {
     private Runnable workRunnable;
     private final String english = "en";
     private final String spanish = "es";
-
-    private final String INPUTTED_TEXT_KEY = "textToBeTranslated";
-    private final String TRANSLATED_TEXT = "translatedText";
-
 
     public TextTranslateFragment() {
         // Required empty public constructor
@@ -69,6 +66,7 @@ public class TextTranslateFragment extends Fragment {
                         YandexAPI.detectLanguageAPICall(inputtedText, response -> {
                             String languagePair = determineLanguageToTranslateTo(response);
                             translateText(languagePair);
+                            //onActionSpeak();
                         });
                     }
                 };
@@ -94,8 +92,14 @@ public class TextTranslateFragment extends Fragment {
     private void translateText(String languagePair) {
         YandexAPI.translateTextAPICall(textToBeTranslated.getText().toString(), languagePair,
                 response -> {
-                    getActivity().runOnUiThread(() -> translatedText.setText(response));
+                    displayTranslatedText(response);
                 });
+    }
+
+    private void displayTranslatedText(String text) {
+        Log.d("test", "before displayTranslatedText");
+        getActivity().runOnUiThread(() -> translatedText.setText(text));
+        Log.d("test", "after displayTranslatedText");
     }
 
     private void startTextToSpeechManager(View view) {
@@ -103,33 +107,25 @@ public class TextTranslateFragment extends Fragment {
         textToSpeechManager.startTextToSpeechManager(view.getContext());
     }
 
-//    @OnClick(R.id.textToSpeechButton)
-//    public void onTextToSpeech() {
+    public void onActionSpeak() {
+        Log.d("onActionSpeak", "speaking");
 //        if (!translatedText.getText().toString().isEmpty()) {
 //            textToSpeechManager.startSpeakingText(translatedText.getText().toString());
 //        }
-//    }
+        textToSpeechManager.startSpeakingText(translatedText.getText().toString());
+
+//        if (!translatedText.getText().toString().isEmpty()) {
+//            // TextToSpeech textToSpeechManager = TextToSpeechManager.getTextToSpeechManager();
+//
+//            //TextToSpeechManager textToSpeechManager = TextToSpeechManager.getTextToSpeechManager();
+//            //textToSpeechManager.startSpeakingText(translatedText.getText().toString());
+//        }
+    }
 
     @Override
     public void onDestroy() {
         super.onDestroy();
-        textToSpeechManager.shutDown();
+        //textToSpeechManager.shutDown();
+        unbinder.unbind();
     }
-
-//    @Override
-//    public void onSaveInstanceState(Bundle savedInstanceState) {
-//        super.onSaveInstanceState(savedInstanceState);
-//
-//        savedInstanceState.putString("TEXT_TO_TRANSLATE", textToBeTranslated.getText().toString());
-//    }
-//
-//    @Override
-//    public void onActivityCreated(Bundle savedInstanceState) {
-//        super.onActivityCreated(savedInstanceState);
-//
-//        if (savedInstanceState != null) {
-//            String text = savedInstanceState.getString("TEXT_TO_TRANSLATE");
-//            textToBeTranslated.setText(text);
-//        }
-//     }
 }

@@ -62,11 +62,4 @@
 
     </FrameLayout>
 
-    <!-- <ImageButton
-        android:id="@+id/textToSpeechButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="bottom"
-        android:src="@drawable/ic_record_voice_over_black_24dp" /> -->
-
 </android.support.constraint.ConstraintLayout>
