@@ -12,9 +12,11 @@
     <string name="User_input_translate_text_hint">Enter text to translate</string>
     <string name="navigation_saved_chats">Saved Chats</string>
 
-    <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="snapshot_button">Snapshot button</string>
     <string name="action_save_translation_title">Save text translation</string>
     <string name="action_speak_title">Speak Translation</string>
+    
+    <string name="english_code_name">en</string>
+    <string name="spanish_code_name">es</string>
 
 </resources>

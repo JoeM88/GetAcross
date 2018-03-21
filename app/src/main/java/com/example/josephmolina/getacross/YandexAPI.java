@@ -1,5 +1,6 @@
 package com.example.josephmolina.getacross;
 
+import android.content.Context;
 import android.support.annotation.NonNull;
 import android.util.Log;
 
@@ -33,6 +34,7 @@ public class YandexAPI {
 
     public static void translateTextAPICall(String textToTranslate, String languagePair,
                                             YandexAPICallback yandexAPICallback) {
+
         String url = buildYandexTranslateUrl(textToTranslate, languagePair);
         Request request = buildYandexRequest(url);
 
@@ -53,7 +55,7 @@ public class YandexAPI {
         });
     }
 
-    public static void detectLanguageAPICall(String text, YandexAPICallback yandexAPICallback) {
+    public static void detectLanguage(String text, YandexAPICallback yandexAPICallback) {
         String url = createYandexDetectionUrl(text);
         Request request = buildYandexRequest(url);
 
@@ -98,5 +100,18 @@ public class YandexAPI {
                 append(BuildConfig.YANDEX_API_KEY).
                 append(TEXT_QUERY_PARAMETER).
                 append(inputtedText).toString();
+    }
+
+    public static String determineLanguageToTranslateTo(String languageDetected, Context context) {
+        String translationLanguage = null;
+
+        if (languageDetected.equals(context.getString(R.string.english_code_name))) {
+            translationLanguage = context.getString(R.string.spanish_code_name);
+        } else if (languageDetected.equals(context.getString(R.string.spanish_code_name))) {
+            translationLanguage = context.getString(R.string.english_code_name);
+        }
+
+        return languageDetected + "-" +
+                translationLanguage;
     }
 }
