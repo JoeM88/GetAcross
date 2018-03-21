@@ -28,7 +28,7 @@ public class MainActivity extends AppCompatActivity {
     SavedChatsFragment savedChatsFragment;
 
 
-    private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
+    private BottomNavigationView.OnNavigationItemSelectedListener onNavigationItemSelectedListener
             = new BottomNavigationView.OnNavigationItemSelectedListener() {
         @Override
         public boolean onNavigationItemSelected(@NonNull MenuItem item) {
@@ -60,7 +60,7 @@ public class MainActivity extends AppCompatActivity {
         if (savedInstanceState == null) {
             displayFragment(new TextTranslateFragment());
         }
-        bottomBarNavigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
+        bottomBarNavigation.setOnNavigationItemSelectedListener(onNavigationItemSelectedListener);
         displayFragment(textTranslateFragment);
     }
 
