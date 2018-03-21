@@ -8,9 +8,6 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
-import android.view.Menu;
-import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.inputmethod.InputMethodManager;
@@ -24,7 +21,7 @@ import butterknife.ButterKnife;
 
 public class MainActivity extends AppCompatActivity {
     @BindView(R.id.navigation)
-    BottomNavigationView navigation;
+    BottomNavigationView bottomBarNavigation;
 
     TextTranslateFragment textTranslateFragment;
     PhotoTranslateFragment photoTranslateFragment;
@@ -45,9 +42,6 @@ public class MainActivity extends AppCompatActivity {
                 case R.id.navigation_text_translate:
                     MainActivity.this.displayFragment(textTranslateFragment);
                     return true;
-                default:
-                    MainActivity.this.displayFragment(textTranslateFragment);
-                    break;
             }
             return false;
         }
@@ -66,7 +60,8 @@ public class MainActivity extends AppCompatActivity {
         if (savedInstanceState == null) {
             displayFragment(new TextTranslateFragment());
         }
-        navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
+        bottomBarNavigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
+        displayFragment(textTranslateFragment);
     }
 
     private void displayFragment(Fragment fragment) {
@@ -84,28 +79,5 @@ public class MainActivity extends AppCompatActivity {
         assert imm != null;
         imm.hideSoftInputFromWindow(getCurrentFocus().getWindowToken(), 0);
         return true;
-    }
-
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        MenuInflater inflater = getMenuInflater();
-        inflater.inflate(R.menu.actionbar, menu);
-        return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()) {
-            case R.id.action_save_translation:
-                String testString = textTranslateFragment.getTranslatedText();
-                Log.d("translated text is: ", testString);
-                return true;
-
-            case R.id.action_speak_translation:
-                return true;
-
-            default:
-                return super.onOptionsItemSelected(item);
-        }
     }
 }
