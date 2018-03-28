@@ -18,5 +18,6 @@
     
     <string name="english_code_name">en</string>
     <string name="spanish_code_name">es</string>
+    <string name="invalid_text_toast_message">You must enter a word or sentence</string>
 
 </resources>

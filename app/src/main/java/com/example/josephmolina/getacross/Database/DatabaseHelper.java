@@ -40,7 +40,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
      onCreate(db);
     }
 
-    public void addChat( String inputtedText, String translation, String title, SQLiteDatabase db) {
+    public static void addChat( String inputtedText, String translation, String title, SQLiteDatabase db) {
         ContentValues contentValues =  new ContentValues();
 
         contentValues.put(ChatContract.ChatEntry.TITLE, title);

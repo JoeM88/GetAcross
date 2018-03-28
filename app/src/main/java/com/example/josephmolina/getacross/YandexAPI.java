@@ -41,7 +41,7 @@ public class YandexAPI {
         client.newCall(request).enqueue(new Callback() {
             @Override
             public void onFailure(@NonNull Call call, @NonNull IOException e) {
-                Log.d("onFailure", "failure reached");
+                Log.d("onFailure translate", "failure reached");
             }
 
             @Override
@@ -62,7 +62,6 @@ public class YandexAPI {
         client.newCall(request).enqueue(new Callback() {
             @Override
             public void onFailure(Call call, IOException e) {
-                Log.d("onFailure", "failure reached");
                 Log.d("onFailure--->", e.getMessage());
             }
 
