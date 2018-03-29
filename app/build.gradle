@@ -1,12 +1,12 @@
 apply plugin: 'com.android.application'
 
 android {
-    compileSdkVersion 25
+    compileSdkVersion 26
     buildToolsVersion "26.0.2"
     defaultConfig {
         applicationId "com.example.josephmolina.getacross"
         minSdkVersion 21
-        targetSdkVersion 25
+        targetSdkVersion 26
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
@@ -32,21 +32,25 @@ dependencies {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
 
-    compile 'com.android.support:appcompat-v7:25.4.0'
-    compile 'com.android.support:design:25.4.0'
-    compile 'com.jakewharton:butterknife:8.8.1'
-    compile 'com.android.support:support-v4:25.4.0'
+    compile 'com.android.support:appcompat-v7:26.1.0'
+    compile 'com.android.support:design:26.1.0'
+    compile 'com.android.support:support-v4:26.1.0'
     testCompile 'junit:junit:4.12'
-    annotationProcessor 'com.jakewharton:butterknife-compiler:8.8.1'
-    implementation 'com.android.support.constraint:constraint-layout:1.0.2'
-    compile 'com.loopj.android:android-async-http:1.4.9'
-    compile 'com.jakewharton.rxbinding:rxbinding:0.4.0'
 
-    implementation 'com.squareup.okhttp3:okhttp:3.9.1'
+    compile 'com.jakewharton:butterknife:8.8.1'
+    annotationProcessor 'com.jakewharton:butterknife-compiler:8.8.1'
+
+    compile 'com.loopj.android:android-async-http:1.4.9'
+    compile 'com.jakewharton.rxbinding:rxbinding:1.0.0'
 
     compile 'com.google.code.gson:gson:2.8.2'
-    implementation 'com.karumi:dexter:4.2.0'
     compile 'com.otaliastudios:cameraview:1.5.0'
     compile 'com.rmtheis:tess-two:8.0.0'
     compile 'com.jakewharton.rxbinding:rxbinding:1.0.0'
+
+    implementation 'com.android.support.constraint:constraint-layout:1.0.2'
+    implementation 'com.squareup.okhttp3:okhttp:3.9.1'
+    implementation 'com.karumi:dexter:4.2.0'
+
+
 }
