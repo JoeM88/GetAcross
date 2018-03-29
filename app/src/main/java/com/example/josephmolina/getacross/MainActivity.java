@@ -12,6 +12,7 @@ import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.inputmethod.InputMethodManager;
 
+import com.example.josephmolina.getacross.Database.ChatDatabase;
 import com.example.josephmolina.getacross.Fragments.PhotoTranslateFragment;
 import com.example.josephmolina.getacross.Fragments.SavedChatsFragment;
 import com.example.josephmolina.getacross.Fragments.TextTranslateFragment;
@@ -26,6 +27,8 @@ public class MainActivity extends AppCompatActivity {
     TextTranslateFragment textTranslateFragment;
     PhotoTranslateFragment photoTranslateFragment;
     SavedChatsFragment savedChatsFragment;
+
+    public static ChatDatabase chatDatabase;
 
 
     private BottomNavigationView.OnNavigationItemSelectedListener onNavigationItemSelectedListener

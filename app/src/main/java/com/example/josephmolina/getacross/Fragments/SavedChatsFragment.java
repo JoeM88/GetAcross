@@ -27,6 +27,4 @@ public class SavedChatsFragment extends Fragment {
         unbinder = ButterKnife.bind(this, view);
         return view;
     }
-
-
 }
