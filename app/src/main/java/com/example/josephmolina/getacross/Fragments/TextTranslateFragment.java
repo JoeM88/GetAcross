@@ -1,6 +1,7 @@
 package com.example.josephmolina.getacross.Fragments;
 
 
+import android.app.AlertDialog;
 import android.app.Fragment;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -61,13 +62,7 @@ public class TextTranslateFragment extends Fragment {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.action_save_translation:
-                if (!textsAreEmpty()) {
-                    saveChatTranslation();
-                } else {
-                    getActivity().runOnUiThread(() ->
-                            Toast.makeText(getActivity(), "There must be texts",
-                                    Toast.LENGTH_SHORT).show());
-                }
+                showSaveChatDialog();
                 return true;
 
             case R.id.action_speak_translation:
@@ -84,6 +79,16 @@ public class TextTranslateFragment extends Fragment {
                 return super.onOptionsItemSelected(item);
         }
 
+    }
+
+    private void showSaveChatDialog() {
+        if (!textsAreEmpty()) {
+            displayDialog();
+        } else {
+            getActivity().runOnUiThread(() ->
+                    Toast.makeText(getActivity(), R.string.empty_text_fields,
+                            Toast.LENGTH_SHORT).show());
+        }
     }
 
     @Override
@@ -141,6 +146,19 @@ public class TextTranslateFragment extends Fragment {
         Chat chat = new Chat(title, originalText, translationText);
         MainActivity.chatDatabase.chatDao().addChat(chat);
         Toast.makeText(getActivity(), "Chat saved", Toast.LENGTH_SHORT).show();
+    }
+
+    private void displayDialog() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+        builder.setTitle(R.string.save_chat_dialog_title);
+        builder.setCancelable(false);
+        LayoutInflater inflater = getActivity().getLayoutInflater();
+        builder.setView(inflater.inflate(R.layout.save_chat_dialog_layout, null));
+        builder.setPositiveButton(R.string.save_chat_dialog_positiveButton,
+                (dialogInterface, i) -> saveChatTranslation());
+        builder.setNegativeButton(R.string.chatDialog_negative_button, (dialogInterface, i) ->
+                dialogInterface.dismiss());
+        builder.show();
     }
 
     @Override

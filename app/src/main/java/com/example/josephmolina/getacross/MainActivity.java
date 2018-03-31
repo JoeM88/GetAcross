@@ -20,7 +20,7 @@ import com.example.josephmolina.getacross.Fragments.TextTranslateFragment;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity  {
     @BindView(R.id.navigation)
     BottomNavigationView bottomBarNavigation;
 

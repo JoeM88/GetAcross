@@ -19,5 +19,10 @@
     <string name="english_code_name">en</string>
     <string name="spanish_code_name">es</string>
     <string name="invalid_text_toast_message">You must enter a word or sentence</string>
+    <string name="saveChat_dialog_hint">eg: How to say Hi</string>
+    <string name="save_chat_dialog_title">Save your chat</string>
+    <string name="save_chat_dialog_positiveButton">Save Chat</string>
+    <string name="chatDialog_negative_button">Cancel</string>
+    <string name="empty_text_fields">There is nothing to save</string>
 
 </resources>
