@@ -1,8 +1,7 @@
 <resources>
     <string name="app_name">GetAcross</string>
-    <string name="photo_translate_title">Photo Translate</string>
-    <string name="voice_translate_title">Voice Translate</string>
-    <string name="text_translate_title">Text Translate</string>
+    <string name="photo_translate_title">Photo</string>
+    <string name="text_translate_title">Text</string>
     <string name="voice_recorder_prompt">What would you like me to translate?</string>
     <string name="empty_translate_text_input">Please enter text to translate</string>
     <string name="textToSpeech_not_initialized_error">TextToSpeech not initialized</string>
