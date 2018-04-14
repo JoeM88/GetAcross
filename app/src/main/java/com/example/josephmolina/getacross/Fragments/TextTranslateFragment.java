@@ -83,7 +83,7 @@ public class TextTranslateFragment extends Fragment {
 
     private void showSaveChatDialog() {
         if (!textsAreEmpty()) {
-            displayDialog();
+             createDialog();
         } else {
             getActivity().runOnUiThread(() ->
                     Toast.makeText(getActivity(), R.string.empty_text_fields,
@@ -136,7 +136,7 @@ public class TextTranslateFragment extends Fragment {
         return userEnteredText.getText().toString().isEmpty() && translatedText.getText().toString().isEmpty();
     }
 
-    private void saveChatTranslation() {
+    private void saveChatTranslation(String chatTitle) {
         chatDatabase = ChatDatabase.getChatDatabaseInstance(getActivity());
 
         String title = "testing";
@@ -148,14 +148,18 @@ public class TextTranslateFragment extends Fragment {
         Toast.makeText(getActivity(), "Chat saved", Toast.LENGTH_SHORT).show();
     }
 
-    private void displayDialog() {
+    private void createDialog() {
+        LayoutInflater layoutInflater = LayoutInflater.from(getActivity());
+        View dialogLayout = layoutInflater.inflate(R.layout.save_chat_dialog_layout, null);
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
         builder.setTitle(R.string.save_chat_dialog_title);
         builder.setCancelable(false);
-        LayoutInflater inflater = getActivity().getLayoutInflater();
-        builder.setView(inflater.inflate(R.layout.save_chat_dialog_layout, null));
+        builder.setView(layoutInflater.inflate(R.layout.save_chat_dialog_layout, null));
         builder.setPositiveButton(R.string.save_chat_dialog_positiveButton,
-                (dialogInterface, i) -> saveChatTranslation());
+                (dialogInterface, i) -> {
+                    EditText titleEditText = dialogLayout.findViewById(R.id.chatTitle);
+                    saveChatTranslation(titleEditText.getText().toString());
+                });
         builder.setNegativeButton(R.string.chatDialog_negative_button, (dialogInterface, i) ->
                 dialogInterface.dismiss());
         builder.show();
